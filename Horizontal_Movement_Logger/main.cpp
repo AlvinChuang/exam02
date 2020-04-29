@@ -53,10 +53,11 @@ void logger(float t[3]) {
         x[i] = t[0];
         y[i] = t[1];
         z[i] = t[2];
-        if ((x[i] > 3*x_begin) || (x[i] < -3*x_begin)) {
+
+        if ((x[i] > 0.1) || (x[i] < -0.1)) {
             disp[i] = 9.8*100*x[i]*0.1*0.1/2;
         } else {
-            disp[i] = 0;
+            disp[i] = 0; // in case for samll error in x acceleration
         }
         
         if (i) {
@@ -87,7 +88,7 @@ void logger(float t[3]) {
         pc.printf("%1.4f\r\n", y[i]);
     }
     for (i = 0; i < n; i++) {
-        pc.printf("%1.4f\r\n", disp[i]);
+        pc.printf("%1.4f\r\n", z[i]);
     }
     for (i = 0; i < n; i++) {
         pc.printf("%d\r\n", move[i]);
